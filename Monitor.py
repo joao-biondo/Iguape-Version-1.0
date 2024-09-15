@@ -99,7 +99,7 @@ def data_read(path):
 def peak_fit(theta, intensity, interval, bkg = 'Linear'):
 	done = False
 	while not done:
-		time.sleep(0.5)
+		#time.sleep(0.5)
 		try:
 			theta_fit = []
 			intensity_fit = []
@@ -148,7 +148,7 @@ def split_pseudo_voigt(x, amp1, cen1, sigma1, eta1, amp2, cen2, sigma2, eta2):
 def peak_fit_split_gaussian(theta, intensity, interval, bkg = 'Linear', height=1e+09, distance = 35):
 	done = False
 	while not done:
-		time.sleep(0.5)
+		#time.sleep(0.5)
 		try:
 			theta_fit = []
 			intensity_fit = []

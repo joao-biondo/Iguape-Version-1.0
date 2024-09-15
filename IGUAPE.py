@@ -215,12 +215,13 @@ class Window(QMainWindow, Ui_MainWindow):
                         self.ax_FWHM.set_xlabel('Blower Temperature (°C)')
                     self.ax_FWHM.set_ylabel('FWHM (°)')
 
+                    self.ax_2theta.legend()
+                    self.ax_area.legend()
+                    self.ax_FWHM.legend()
+
                 self.ax_main.axvspan(self.fit_interval[0], self.fit_interval[1], color='grey', alpha=0.5, label='Selected Fitting Interval')
                 self.ax_main.legend()
-                self.ax_FWHM.legend()
-                self.ax_2theta.legend()
-                self.ax_FWHM.legend()
-
+    
             elif self.fit_interval and not self.plot_with_temp:
                 self.ax_2theta.clear()
                 self.ax_area.clear()
@@ -256,11 +257,13 @@ class Window(QMainWindow, Ui_MainWindow):
                     self.ax_FWHM.set_xlabel('XRD measure')
                     self.ax_FWHM.set_ylabel('FWHM (°)')
 
+                    self.ax_2theta.legend()
+                    self.ax_area.legend()
+                    self.ax_FWHM.legend()
+
                 self.ax_main.axvspan(self.fit_interval[0], self.fit_interval[1], color='grey', alpha=0.5, label='Selected Fitting Interval')
                 self.ax_main.legend()
-                self.ax_2theta.legend()
-                self.ax_area.legend()
-                self.ax_FWHM.legend()
+                
         # Update canvas #
             self.canvas_main.draw()
             self.canvas_sub.draw()
@@ -290,11 +293,7 @@ class Window(QMainWindow, Ui_MainWindow):
             self.monitor = FolderMonitor(folder_path=folder_path)
             self.monitor.new_data_signal.connect(self.handle_new_data)
             self.monitor.start()
-            
-            #monitor_thread = threading.Thread(target=self.monitor.run)
-            #monitor_thread.daemon=True
-            #monitor_thread.start()
-            
+
         else:
             print('No folder selected. Exiting')
             
@@ -341,10 +340,10 @@ class Window(QMainWindow, Ui_MainWindow):
                 if self.monitor.kelvin_sginal:
                     df = pd.DataFrame({'Cryojet Temperature (K)': self.monitor.fit_data['temp'], 'Peak position (degree)': self.monitor.fit_data['dois_theta_0'], 'Peak Integrated Area': self.monitor.fit_data['area'], 
                       'FWHM (degree)': self.monitor.fit_data['fwhm'], 'R-squared (R²)': self.monitor.fit_data['R-squared']})
-                file_path, _ = QFileDialog.getSaveFileName(self, "Save fitting Data", "", "Excel Files (*.xlsx);;All Files (*)", options=options)
+                    file_path, _ = QFileDialog.getSaveFileName(self, "Save fitting Data", "", "Excel Files (*.xlsx);;All Files (*)", options=options)
             
-                if file_path:
-                    df.to_csv(file_path)
+                    if file_path:
+                        df.to_csv(file_path)
                 else:
                     df = pd.DataFrame({'Blower Temperature (°C)': self.monitor.fit_data['temp'], 'Peak position (degree)': self.monitor.fit_data['dois_theta_0'], 'Peak Integrated Area': self.monitor.fit_data['area'], 
                       'FWHM (degree)': self.monitor.fit_data['fwhm'], 'R-squared (R²)': self.monitor.fit_data['R-squared']})

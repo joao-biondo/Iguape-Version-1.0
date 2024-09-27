@@ -13,10 +13,17 @@ For Windows users we make available a installer, which can be found at this repo
 #Linux
 We're still evaluating the availability of installation vai Linux-terminal.
 ## Usage
+#Initialization
 The first step, once Iguape is initialized, is to select a folder to monitor. This can be done by clicking in the **Folder** option at the upper right corner of the window. It's important that the selected folder contains the iguape_fileslist.txt file. It is though this text document, that Iguape can read the XRD data available at the Folder. 
 ![Iguape_Inizialização](https://github.com/user-attachments/assets/1fd02452-9f51-4bdf-a837-3d8eeca26618)
-
-
+#Custom Vizualization
+Iguape offers tools for custom visualization of the XRD patterns. These include: XRD patterns offset, 2theta and temperature/measure order masks, zoom, pan and figure saving.
+https://github.com/user-attachments/assets/b2279101-6755-42f8-9452-ad3f064787e6
+![Iguape_tools#2](https://github.com/user-attachments/assets/d1c4cdb5-5b46-4c8d-966c-5cd69ea62c01)
+#Peak Fit
+Peak fitting is available in Iguape, helping the analysis of sample evotution during _in situ_ experiments. When the Peak Fit button is pressed, a new window will be opened. The user, then, can configure the fitting model and have a preview of the best fit achieved by Iguape.  
+![Iguape_PeakFit](https://github.com/user-attachments/assets/7470aadb-4439-4da7-8a26-c870bc747b93)
+![Iguape_PeakFit#2](https://github.com/user-attachments/assets/97165393-08d8-4d95-b295-6b32726a79a8)
 
 ## Support
 Any enquiries can be adressed to joao.neto@lnls.br. Please, fell free to suggest or correct anything.

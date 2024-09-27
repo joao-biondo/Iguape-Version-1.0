@@ -27,7 +27,7 @@ from PyQt5.QtWidgets import QProgressDialog, QMessageBox, QVBoxLayout
 counter.count = 0
 
 
-
+### Main window Class ###
 class Window(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -64,14 +64,15 @@ class Window(QMainWindow, Ui_MainWindow):
         self.sm.set_array([])
         self.cax = self.fig_main.colorbar(self.sm, ax=self.ax_main) # Creating the colorbar axes #
         
-        # Create button layout #
+        
         self.refresh_button.clicked.connect(self.update_graphs)
         
         self.reset_button.clicked.connect(self.reset_interval)
         
         self.peak_fit_button.clicked.connect(self.select_fit_interval)
         self.save_peak_fit_data_button.clicked.connect(self.save_data_frame)
-    
+        
+        # Signal Variables #
         self.plot_with_temp = False
         self.selected_interval = None
         self.fit_interval = None
@@ -98,7 +99,7 @@ class Window(QMainWindow, Ui_MainWindow):
         self.XRD_measure_order_checkbox.stateChanged.connect(self.measure_order_index)
         self.temperature_checkbox.stateChanged.connect(self.temp_index)
         self.filter_button.clicked.connect(self.apply_temp_mask)
-
+  ## Main refresh function ##
     def update_graphs(self):
         QApplication.setOverrideCursor(Qt.WaitCursor)
         # Clear previous plots #
@@ -275,6 +276,7 @@ class Window(QMainWindow, Ui_MainWindow):
             pass
 
         QApplication.restoreOverrideCursor()
+
     def select_folder(self):
         if self.folder_selected:
             self.monitor.data_frame = self.monitor.data_frame.iloc[0:0]
@@ -300,7 +302,7 @@ class Window(QMainWindow, Ui_MainWindow):
 
     def handle_new_data(self, new_data):
         self.plot_data = pd.concat([self.plot_data, new_data], ignore_index=True)
-        
+    ## onselect for span tool ##    
     def onselect(self, xmin, xmax):
         self.selected_interval = (xmin, xmax)
         #print(f'Selected Interval: {self.selected_interval}')
@@ -432,11 +434,11 @@ class Window(QMainWindow, Ui_MainWindow):
             "<p>- LNLS - CNPEM</p>",
         )
 
-
+### Worker Class for peak fitting ###
 class Worker(QThread):
     progress = pyqtSignal(int)
     finished = pyqtSignal(float) 
-    error = pyqtSignal(str) # Changed to emit multiple arrays
+    error = pyqtSignal(str) 
 
     def __init__(self, interval):
         super().__init__()
@@ -470,7 +472,7 @@ class Worker(QThread):
             self.error.emit(f'Error during peak fitting: {str(e)}. Please select a new Fit Interval')
             print(f'Exception {e}. Please select a new Fit Interval')
 
-
+### Peak Fit Window Class ###
 class FitWindow(QDialog, Ui_pk_window):
     def __init__(self, parent=None):
         super().__init__(parent)

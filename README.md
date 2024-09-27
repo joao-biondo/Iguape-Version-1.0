@@ -18,7 +18,7 @@ The first step, once Iguape is initialized, is to select a folder to monitor. Th
 ![Iguape_Inizialização](https://github.com/user-attachments/assets/1fd02452-9f51-4bdf-a837-3d8eeca26618)
 #Custom Vizualization
 Iguape offers tools for custom visualization of the XRD patterns. These include: XRD patterns offset, 2theta and temperature/measure order masks, zoom, pan and figure saving.
-https://github.com/user-attachments/assets/b2279101-6755-42f8-9452-ad3f064787e6
+![image](https://github.com/user-attachments/assets/edf73403-a4f0-469e-9150-4043866b2828)
 ![Iguape_tools#2](https://github.com/user-attachments/assets/d1c4cdb5-5b46-4c8d-966c-5cd69ea62c01)
 #Peak Fit
 Peak fitting is available in Iguape, helping the analysis of sample evotution during _in situ_ experiments. When the Peak Fit button is pressed, a new window will be opened. The user, then, can configure the fitting model and have a preview of the best fit achieved by Iguape.  
